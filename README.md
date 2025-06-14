@@ -73,7 +73,7 @@ OPENROUTER_API_KEY=your-api-key-here
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/telecom-churn-prediction-llm.git
+   git clone https://github.com/2201AI24/telecom-churn-prediction-llm.git
    cd telecom-churn-prediction-llm
    ```
 2. Install dependencies:
@@ -94,7 +94,7 @@ OPENROUTER_API_KEY=your-api-key-here
 
 ```
 ├── app.py
-├── model_training.ipynb  # Colab notebook
+├── model.ipynb 
 ├── xgb_churn_model.pkl
 ├── feature_columns.pkl
 ├── label_encoders.pkl
@@ -107,8 +107,8 @@ OPENROUTER_API_KEY=your-api-key-here
 
 ## 👨‍💻 Author
 
-M. Umesh Chandra
-BTech Artificial Intelligence and Data Science (Batch 2022)
+M. Umesh Chandra<br>
+BTech Artificial Intelligence and Data Science (Batch 2022)<br> 
 Project: Telecom Churn Prediction + LLM Explanation
 
 ---
