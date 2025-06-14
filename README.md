@@ -51,9 +51,6 @@ The app generates a detailed, easy-to-understand explanation using the DeepSeek 
 
 ## 📷 Sample Output
 
-* **Prediction**: Will the customer churn? No
-* **Confidence**: 0.45
-* **LLM Explanation**: Highlights customer's strong service engagement, non-senior status, regular payment, and bundled features as reasons for non-churn.
 ![WhatsApp Image 2025-06-13 at 22 01 32_63a7bd7e](https://github.com/user-attachments/assets/4b87c88d-2fe4-4bc6-856a-252f89df3315)
 
 ---
