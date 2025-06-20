@@ -97,7 +97,8 @@ OPENROUTER_API_KEY=your-api-key-here
 ├── label_encoders.pkl
 ├── .env
 ├── requirements.txt
-└── README.md
+├──README.md
+└──WA_Fn-UseC_-Telco-Customer-Churn.csv
 ```
 
 ---
