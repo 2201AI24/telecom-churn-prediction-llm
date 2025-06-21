@@ -51,7 +51,8 @@ The app generates a detailed, easy-to-understand explanation using the DeepSeek 
 
 ## 📷 Sample Output
 
-![WhatsApp Image 2025-06-13 at 22 01 32_63a7bd7e](https://github.com/user-attachments/assets/4b87c88d-2fe4-4bc6-856a-252f89df3315)
+![image](https://github.com/user-attachments/assets/eb1113a2-7291-474b-82b4-abc090e03814)
+
 
 ---
 
