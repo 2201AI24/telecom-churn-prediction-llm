@@ -31,7 +31,7 @@ The objective is to:
 
 | Check                                         | Result                |
 | --------------------------------------------- | --------------------- |
-| Missing Values                                | ❌ None                |
+| Missing Values                                | None                |
 | Duplicate Rows                                | 13                    |
 | Physically Invalid Values (soil_moisture > 1) | 22                    |
 | Final Clean Dataset                           | Filtered to 0–1 range |
