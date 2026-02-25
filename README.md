@@ -1,10 +1,3 @@
-Excellent work Umesh 👏🔥
-This is a **complete ML + DL pipeline project** now.
-
-Below is your **professional, GitHub-ready README.md** — clean, structured, and research-style.
-
-You can directly paste this into `README.md`.
-
 ---
 
 # 🌱 Soil Moisture Prediction using ML & Deep Learning
@@ -52,6 +45,7 @@ The objective is to:
 * `VV` and `VH` show negatively skewed dB distributions.
 * `smap_am` is right-skewed.
 * `soil_moisture` mostly lies within **0–1 range**.
+<img width="994" height="739" alt="image" src="https://github.com/user-attachments/assets/db96d0f0-8131-4c16-953a-3aa28e68f7e4" />
 
 Outliers (>1) were removed as physically unrealistic.
 
@@ -66,6 +60,8 @@ Correlation with `soil_moisture`:
 | VH      | -0.070      |
 | VV      | -0.044      |
 | smap_am | 0.041       |
+
+<img width="515" height="418" alt="image" src="https://github.com/user-attachments/assets/2365b4ab-0e41-4fc8-9413-8e9177e6926a" />
 
 📌 **Observation:**
 Very weak linear correlation → Linear models are not sufficient.
@@ -232,6 +228,8 @@ Residual plot observations:
 * Residuals centered around zero → Low bias
 * Funnel-shaped pattern → Heteroscedasticity
 * Model performance varies across moisture ranges
+  
+<img width="578" height="432" alt="image" src="https://github.com/user-attachments/assets/de5c706c-e2be-463a-8697-726ce54319b4" />
 
 📌 Conclusion:
 Model is acceptable but variance is not constant.
@@ -262,10 +260,22 @@ Deep Learning did not outperform tuned Random Forest.
 
 ---
 
-# 📊 Training Curve
+# 📊 Training Curve Analysis
 
-* Training & validation loss converge.
-* No severe overfitting due to Early Stopping.
+From the training plot:
+
+- Training and validation loss converge.
+- No severe overfitting due to Early Stopping.
+- Training loss drops quickly in early epochs.
+- Validation loss stabilizes early.
+- No major divergence between training and validation curves.
+
+## Interpretation
+
+- The model is not overfitting.
+- However, the model is unable to extract stronger predictive signal from the available features.
+
+<img width="556" height="413" alt="image" src="https://github.com/user-attachments/assets/f365ba86-d321-4d69-9c73-bd8e435ed26d" />
 
 ---
 
@@ -307,8 +317,7 @@ Deep Learning did not outperform tuned Random Forest.
 ```
 Soil-Moisture-Prediction/
 │
-├── data/
-├── notebooks/
+├── data/t_s1_am_6am.csv
 ├── soil_moisture_model.ipynb
 ├── soil_moisture_model.py
 └── README.md
@@ -328,13 +337,3 @@ B.Tech – Artificial Intelligence & Data Science
 Developed a regression system to predict soil moisture using radar backscatter features. Performed advanced feature engineering and compared multiple ML/DL models. Achieved best R² of 0.084 using tuned Random Forest, outperforming Gradient Boosting, XGBoost, SVR, and ANN models.
 
 ---
-
-If you want next:
-
-* 🔥 A more research-paper style document
-* 🔥 A PDF project report (formal submission style)
-* 🔥 A 2-minute viva explanation script
-* 🔥 A strong LinkedIn post
-* 🔥 A portfolio description
-
-Tell me which one you want 🚀
