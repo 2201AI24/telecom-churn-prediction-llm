@@ -1,117 +1,340 @@
-# Telecom Customer Churn Predictor with LLM Explanation
+Excellent work Umesh 👏🔥
+This is a **complete ML + DL pipeline project** now.
 
-This project is an interactive web application that predicts whether a telecom customer will churn and provides a plain-language explanation for the prediction using a Large Language Model (LLM).
+Below is your **professional, GitHub-ready README.md** — clean, structured, and research-style.
 
----
-
-## 📌 Overview
-
-The application takes customer information as input, uses a trained XGBoost model to predict churn, and then uses an LLM (via OpenRouter API) to explain the prediction in simple terms.
+You can directly paste this into `README.md`.
 
 ---
 
-## 🚀 Features
+# 🌱 Soil Moisture Prediction using ML & Deep Learning
 
-* Predict customer churn using a machine learning model (XGBoost)
-* Collect user input through a friendly Streamlit interface
-* Provide human-readable explanations using DeepSeek LLM (Qwen3-8B)
-* Visualize processed input data and prediction confidence
-* Secure API key handling via `.env` file
+## 📌 Project Overview
+
+This project focuses on building a **regression model to predict soil moisture content** using radar backscatter signals and satellite-derived features.
+
+The objective is to:
+
+* Perform detailed **Exploratory Data Analysis (EDA)**
+* Apply **Feature Engineering**
+* Train multiple **Machine Learning models**
+* Compare with a **Deep Learning model**
+* Evaluate performance using RMSE, MAE, and R²
 
 ---
 
-## 🛠️ Technologies Used
+## 📂 Dataset Information
+
+* **Total Samples:** 30,747
+* **Features:** 3 Independent + 1 Target
+* **Target Variable:** `soil_moisture`
+* **Input Features:**
+
+  * `VV`
+  * `VH`
+  * `smap_am`
+
+### Data Quality Checks
+
+| Check                                         | Result                |
+| --------------------------------------------- | --------------------- |
+| Missing Values                                | ❌ None                |
+| Duplicate Rows                                | 13                    |
+| Physically Invalid Values (soil_moisture > 1) | 22                    |
+| Final Clean Dataset                           | Filtered to 0–1 range |
+
+---
+
+# 📊 Exploratory Data Analysis (EDA)
+
+## 1️⃣ Distribution Analysis
+
+* `VV` and `VH` show negatively skewed dB distributions.
+* `smap_am` is right-skewed.
+* `soil_moisture` mostly lies within **0–1 range**.
+
+Outliers (>1) were removed as physically unrealistic.
+
+---
+
+## 2️⃣ Correlation Analysis
+
+Correlation with `soil_moisture`:
+
+| Feature | Correlation |
+| ------- | ----------- |
+| VH      | -0.070      |
+| VV      | -0.044      |
+| smap_am | 0.041       |
+
+📌 **Observation:**
+Very weak linear correlation → Linear models are not sufficient.
+
+This justified using:
+
+* Tree-based models
+* Non-linear models
+* Feature engineering
+
+---
+
+# ⚙️ Feature Engineering
+
+To capture non-linear relationships:
+
+### 1️⃣ dB → Linear Conversion
+
+```
+VV_lin = 10^(VV/10)
+VH_lin = 10^(VH/10)
+```
+
+### 2️⃣ Interaction Features
+
+* VV × VH
+* VV × smap
+* VH × smap
+
+### 3️⃣ Ratio Features
+
+* VV / VH
+* VH / VV
+* VV − VH
+
+### 4️⃣ Polynomial Features
+
+* VV²
+* VH²
+* smap²
+
+### 5️⃣ Log Transform
+
+* log(1 + smap)
+
+---
+
+## Selected Final Features
+
+```
+VV_lin
+VH_lin
+smap_am
+VV_minus_VH
+VV_VH_ratio
+VV_smap_interaction
+VH_smap_interaction
+smap_sq
+```
+
+---
+
+# 🤖 Machine Learning Models
+
+### Train-Test Split
+
+* 80% Training
+* 20% Testing
+* random_state = 42
+
+---
+
+## Models Implemented
+
+* Random Forest
+* Gradient Boosting
+* XGBoost
+* Support Vector Regression (RBF)
+* KNN
+* Deep Neural Network (ANN)
+
+---
+
+# 📈 Model Performance (Before Tuning)
+
+| Model             | RMSE    | MAE     | R²     |
+| ----------------- | ------- | ------- | ------ |
+| Gradient Boosting | 0.01477 | 0.10186 | 0.072  |
+| SVR               | 0.01503 | 0.10271 | 0.056  |
+| Random Forest     | 0.01546 | 0.10263 | 0.029  |
+| XGBoost           | 0.01678 | 0.10601 | -0.054 |
+| KNN               | 0.01681 | 0.10612 | -0.056 |
+
+📌 Gradient Boosting performed best initially.
+
+---
+
+# 🔍 Hyperparameter Tuning
+
+## Best Random Forest Parameters
+
+```
+n_estimators = 600
+max_depth = 15
+min_samples_split = 5
+min_samples_leaf = 2
+```
+
+### Tuned RF Results
+
+* RMSE: 0.01458
+* MAE: 0.10076
+* R²: 0.08445
+
+---
+
+## Best Gradient Boosting Parameters
+
+```
+n_estimators = 200
+max_depth = 4
+learning_rate = 0.1
+subsample = 0.8
+```
+
+### Tuned GB Results
+
+* RMSE: 0.01467
+* MAE: 0.10130
+* R²: 0.07893
+
+---
+
+## Best XGBoost Parameters
+
+```
+n_estimators = 300
+max_depth = 3
+learning_rate = 0.1
+subsample = 0.8
+```
+
+### Tuned XGB Results
+
+* RMSE: 0.01474
+* MAE: 0.10170
+* R²: 0.07415
+
+---
+
+# 🏆 Best Model
+
+✅ **Random Forest (Tuned)**
+
+* Lowest error
+* Highest R² (0.084)
+
+---
+
+# 📉 Residual Analysis
+
+Residual plot observations:
+
+* Residuals centered around zero → Low bias
+* Funnel-shaped pattern → Heteroscedasticity
+* Model performance varies across moisture ranges
+
+📌 Conclusion:
+Model is acceptable but variance is not constant.
+
+---
+
+# 🧠 Deep Learning Model
+
+### Architecture
+
+Input → 128 → 64 → 32 → 16 → Output
+Activation: ReLU
+Optimizer: Adam (lr = 0.001)
+Loss: MSE
+Batch Size: 64
+Early Stopping: patience = 10
+
+---
+
+## DL Performance
+
+* RMSE: 0.01496
+* MAE: 0.10266
+* R²: 0.06055
+
+📌 Observation:
+Deep Learning did not outperform tuned Random Forest.
+
+---
+
+# 📊 Training Curve
+
+* Training & validation loss converge.
+* No severe overfitting due to Early Stopping.
+
+---
+
+# 🔎 Final Insights
+
+1. Soil moisture has weak linear correlation with raw radar features.
+2. Feature engineering significantly improved performance.
+3. Tree-based models outperform linear and deep learning models.
+4. Random Forest achieved best overall performance.
+5. Residual analysis shows heteroscedasticity remains.
+
+---
+
+# 🚀 Possible Improvements
+
+* Add temporal features
+* Use spatial context (geolocation)
+* Apply ensemble stacking
+* Use advanced DL models (TabNet / Attention-based models)
+* Use larger dataset
+
+---
+
+# 🛠 Tech Stack
 
 * Python
-* Streamlit
-* pandas & NumPy
-* scikit-learn
+* Pandas
+* NumPy
+* Scikit-learn
 * XGBoost
-* OpenRouter API (LLM: DeepSeek Qwen3-8B)
-* joblib
+* TensorFlow / Keras
+* Matplotlib
+* Seaborn
 
 ---
 
-## 🧠 Model Details
-
-The XGBoost model is trained on telecom customer data with features such as:
-
-* Demographics (Gender, SeniorCitizen, Partner, Dependents)
-* Account details (Tenure, Contract, PaperlessBilling, PaymentMethod)
-* Services (PhoneService, InternetService, StreamingTV, etc.)
-* Charges (MonthlyCharges, TotalCharges)
-
----
-
-## 💡 Explanation Engine
-
-The app generates a detailed, easy-to-understand explanation using the DeepSeek LLM hosted on OpenRouter. It interprets key factors like tenure, contract type, service bundles, and payment method to justify the prediction.
-
----
-
-## 📷 Sample Output
-
-![image](https://github.com/user-attachments/assets/eb1113a2-7291-474b-82b4-abc090e03814)
-
-
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file in your project root:
+# 📁 Project Structure
 
 ```
-OPENROUTER_API_KEY=your-api-key-here
+Soil-Moisture-Prediction/
+│
+├── data/
+├── notebooks/
+├── soil_moisture_model.ipynb
+├── soil_moisture_model.py
+└── README.md
 ```
 
 ---
 
-## 📦 How to Run
+# 👨‍💻 Author
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/2201AI24/telecom-churn-prediction-llm.git
-   cd telecom-churn-prediction-llm
-   ```
-2. Install dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Add your `.env` file with the OpenRouter API key.
-4. Run the Streamlit app:
-
-   ```bash
-   streamlit run app.py
-   ```
+**M. Umesh Chandra**
+B.Tech – Artificial Intelligence & Data Science
 
 ---
 
-## 📁 Project Structure
+# 📌 Resume-Ready Project Description
 
-```
-├── app.py
-├── model.ipynb 
-├── xgb_churn_model.pkl
-├── feature_columns.pkl
-├── label_encoders.pkl
-├── .env
-├── requirements.txt
-├──README.md
-└──WA_Fn-UseC_-Telco-Customer-Churn.csv
-```
+Developed a regression system to predict soil moisture using radar backscatter features. Performed advanced feature engineering and compared multiple ML/DL models. Achieved best R² of 0.084 using tuned Random Forest, outperforming Gradient Boosting, XGBoost, SVR, and ANN models.
 
 ---
 
-## 👨‍💻 Author
+If you want next:
 
-M. Umesh Chandra<br>
-BTech Artificial Intelligence and Data Science (Batch 2022)<br> 
-Project: Telecom Churn Prediction + LLM Explanation
+* 🔥 A more research-paper style document
+* 🔥 A PDF project report (formal submission style)
+* 🔥 A 2-minute viva explanation script
+* 🔥 A strong LinkedIn post
+* 🔥 A portfolio description
 
----
-
-## 📄 License
-
-This project is for educational use only.
+Tell me which one you want 🚀
