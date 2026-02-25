@@ -1,5 +1,3 @@
----
-
 # 🌱 Soil Moisture Prediction using ML & Deep Learning
 
 ## 📌 Project Overview
@@ -45,7 +43,6 @@ The objective is to:
 * `VV` and `VH` show negatively skewed dB distributions.
 * `smap_am` is right-skewed.
 * `soil_moisture` mostly lies within **0–1 range**.
-<img width="994" height="739" alt="image" src="https://github.com/user-attachments/assets/db96d0f0-8131-4c16-953a-3aa28e68f7e4" />
 
 Outliers (>1) were removed as physically unrealistic.
 
@@ -335,5 +332,3 @@ B.Tech – Artificial Intelligence & Data Science
 # 📌 Resume-Ready Project Description
 
 Developed a regression system to predict soil moisture using radar backscatter features. Performed advanced feature engineering and compared multiple ML/DL models. Achieved best R² of 0.084 using tuned Random Forest, outperforming Gradient Boosting, XGBoost, SVR, and ANN models.
-
----
